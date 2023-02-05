@@ -17,6 +17,7 @@ class Modelo2: public Robot {
         void limpar();
 };
 
+//Robô irá limpar o ambiente e terá uma nova direcão e orientacao:
 void Modelo2::limpar () {
     
 };

@@ -2,6 +2,7 @@
 
 using namespace std;
 
+//Construtor usando dados do arquivo 
 Robot::Robot (string robot, Ambiente amb) {
     posicaoGrade = new int[2];
 
@@ -31,6 +32,7 @@ Robot::Robot (string robot, Ambiente amb) {
     }
 };
 
+//Metodo para parar o robô quando a bateria descarregar
 void Robot::stopRobot() {
 
 }

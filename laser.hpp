@@ -9,8 +9,8 @@ using namespace std;
 
 
 class Laser {
-public:
-void calcularColisoes(Ambiente amb);
+    public:
+        void calcularColisoes(Ambiente amb);
 };
 
 #endif //LASER_H
