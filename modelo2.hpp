@@ -1,10 +1,9 @@
 #ifndef MODELO2_HPP
 #define MODELO2_HPP
 
-
 #include <iostream>
 #include <fstream>
-#include <string> 
+#include <string>
 #include "robot.hpp"
 #include "laser.hpp"
 #include "ambiente.hpp"
@@ -12,13 +11,11 @@
 using namespace std;
 
 class Modelo2: public Robot {
-    char orientacao;
-    Laser *laser;
-    public:
-        Modelo2(string robot, Ambiente amb):Robot(robot, amb) {
-            laser = new Laser();
-        };
-        void limpar();
+char orientacao;
+Laser *laser;
+public:
+Modelo2(string robot, Ambiente amb);
+void limpar();
 };
 
 #endif

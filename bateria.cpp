@@ -1,15 +1,13 @@
-#include <iostream>
-#include <fstream>
-#include <string> 
-#include "ambiente.hpp"
-using namespace std;
+#include "bateria.hpp"
 
-class Bateria {
-    int nivel;
-    public:
-        Bateria(int nivelInicial) {
-            nivel = nivelInicial;
-        };
-        void descarregar();
-        void carregar();
+Bateria::Bateria(int nivelInicial) {
+    nivel = nivelInicial;
 };
+
+void Bateria::descarregar() {
+
+};
+
+void Bateria::carregar() {
+
+}

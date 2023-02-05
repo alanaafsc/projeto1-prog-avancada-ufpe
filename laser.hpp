@@ -5,6 +5,8 @@
 #include <fstream>
 #include <string>
 #include "ambiente.hpp"
+using namespace std;
+
 
 class Laser {
 public:

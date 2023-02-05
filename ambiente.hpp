@@ -15,7 +15,15 @@ public:
   Ambiente(string config);
   void addObstaculo(int obstaculo[2]);
   void addObstaculo(int obstaculo1[2], int obstaculo2[2]);
-  void printAmbiente();
+  void printAmbiente() {
+    cout << "Ambiente: " << endl;
+    for(int i = 0; i < dimensoes[0]; i++) {
+    for(int j = 0; j < dimensoes[1]; j++) { 
+    cout << grade[i][j] << " ";
+    }
+    cout << endl;
+  }
+  };
 };
 
 #endif

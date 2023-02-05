@@ -1,19 +1,6 @@
-#include <iostream>
-#include <fstream>
-#include <string> 
-#include "ambiente.hpp"
-#include "bateria.hpp"
-using namespace std;
+#include "robot.hpp"
 
-class Robot {
-    protected:
-        string nome;
-        int * posicaoGrade;
-        Bateria * bateria;
-    public:
-        Robot(string, Ambiente);
-        void stopRobot();
-};
+using namespace std;
 
 Robot::Robot (string robot, Ambiente amb) {
     posicaoGrade = new int[2];

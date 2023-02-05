@@ -1,5 +1,5 @@
-#ifndef BATERIA_H
-#define BATERIA_H
+#ifndef BATERIA_HPP
+#define BATERIA_HPP
 
 class Bateria {
     int nivel;

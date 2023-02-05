@@ -21,7 +21,8 @@ int main () {
     string fileRobot = "robot.txt";
 
     //Declaração do robô:
-  //  Modelo1 modelo1(fileRobot, amb);
+    Modelo1 modelo1(fileRobot, amb);
+    amb.printAmbiente();
 
     return 0;
 }
