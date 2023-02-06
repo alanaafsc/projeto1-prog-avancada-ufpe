@@ -3,7 +3,7 @@
 using namespace std;
 
 //Construtor usando dados do arquivo 
-Robot::Robot (string robot, Ambiente amb) {
+Robot::Robot (string robot, Ambiente &amb) {
     posicaoGrade = new int[2];
 
     //Declarar variável do arquivo config.txt:
@@ -30,11 +30,16 @@ Robot::Robot (string robot, Ambiente amb) {
         }
         fileRobot.close();
     }
+    amb.getGrade()[posicaoGrade[0]][posicaoGrade[1]] = 'R';
 };
 
 //Metodo para parar o robô quando a bateria descarregar
 void Robot::stopRobot() {
 
+}
+
+int * Robot::getPosicaoGrade() {
+    return posicaoGrade;
 }
 /*
 int main () {

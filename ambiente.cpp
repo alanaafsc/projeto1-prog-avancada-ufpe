@@ -6,7 +6,7 @@ using namespace std;
 
 class Ambiente {
   int * dimensoes;
-  int ** grade;
+  char ** grade;
   int * posicaoCarregamento;
 public:
   Ambiente(string config);
@@ -20,7 +20,13 @@ public:
     }
     cout << endl;
   }
- }
+ };
+  char ** getGrade() {
+    return grade;
+  };
+  int * getPosicaoCarregamento() {
+    return posicaoCarregamento;
+  };
 };
 
 Ambiente::Ambiente (string config) {
@@ -57,25 +63,25 @@ Ambiente::Ambiente (string config) {
   int yGrade = dimensoes[1];
 
   //Definindo matriz do ambiente:
-  grade = new int*[xGrade];
+  grade = new char*[xGrade];
   for(int i = 0; i < xGrade; i++) {
-    grade[i] = new int[yGrade];
+    grade[i] = new char[yGrade];
   }
 
   //Definindo grade sem obstáculos e com a posição de carregamento:
   for(int i = 0; i < xGrade; i++) {
     for(int j = 0; j< yGrade; j++) { 
-      grade[i][j] = 0;
+      grade[i][j] = '0';
     }
   }
 
   //posicao de carregamento representado pelo numero 9, ja que n dá pra colocar um X pois grade é um ponteiro de int, não de char
-  grade[posicaoCarregamento[0]][posicaoCarregamento[1]] = 9;
+  grade[posicaoCarregamento[0]][posicaoCarregamento[1]] = 'E';
 
 };
 
 void Ambiente::addObstaculo (int obstaculo[2]) {
-  grade[obstaculo[0]][obstaculo[1]] = 1;
+  grade[obstaculo[0]][obstaculo[1]] = '1';
 };
 
 void Ambiente::addObstaculo (int obstaculo1[2], int obstaculo2[2]) {
@@ -84,7 +90,7 @@ void Ambiente::addObstaculo (int obstaculo1[2], int obstaculo2[2]) {
   //Calculo da altura e largura do retângulo
   int altura = abs(obstaculo1[0] - obstaculo2[0]) + 1;
   int largura = abs(obstaculo1[1] - obstaculo2[1]) + 1;
-  
+
   //Começando pelo obstaculo1:
   if(altura != 0 && largura != 0) {
     //Caso tenha largura e altura:
@@ -93,7 +99,7 @@ void Ambiente::addObstaculo (int obstaculo1[2], int obstaculo2[2]) {
       for(int i = obstaculo1[0]; i < (altura + obstaculo1[0]); i++) {
         for(int j = obstaculo1[1]; j < (obstaculo1[1] + largura); j++){
           if(grade[i][j] != grade[posicaoCarregamento[0]][posicaoCarregamento[1]]) {
-            grade[i][j] = 1;
+            grade[i][j] = '1';
           }
         }
       }
@@ -103,7 +109,7 @@ void Ambiente::addObstaculo (int obstaculo1[2], int obstaculo2[2]) {
       for(int i = obstaculo1[0]; i < (obstaculo1[0] + altura); i++) {
         for(int j = obstaculo1[1]; j > (obstaculo1[1] - largura); j--){
           if(grade[i][j] != grade[posicaoCarregamento[0]][posicaoCarregamento[1]]) {
-            grade[i][j] = 1;
+            grade[i][j] = '1';
           }
         }
       }
@@ -113,7 +119,7 @@ void Ambiente::addObstaculo (int obstaculo1[2], int obstaculo2[2]) {
         for(int i = obstaculo1[0]; i > (obstaculo1[0] - altura); i--) {
           for(int j = obstaculo1[1]; j < (obstaculo1[1] + largura); j++){
             if(grade[i][j] != grade[posicaoCarregamento[0]][posicaoCarregamento[1]]) {
-              grade[i][j] = 1;
+              grade[i][j] = '1';
             }
         }
       }
@@ -123,7 +129,7 @@ void Ambiente::addObstaculo (int obstaculo1[2], int obstaculo2[2]) {
         for(int i = obstaculo1[0]; i > (obstaculo1[0] - altura); i--) {
           for(int j = obstaculo1[1];  j > (obstaculo1[1] - largura); j--){
             if(grade[i][j] != grade[posicaoCarregamento[0]][posicaoCarregamento[1]]) {
-              grade[i][j] = 1;
+              grade[i][j] = '1';
             }
           }
       }
@@ -137,13 +143,13 @@ void Ambiente::addObstaculo (int obstaculo1[2], int obstaculo2[2]) {
     if(obstaculo1[1] < obstaculo2[1]){
       for(int j = obstaculo1[1]; j < (obstaculo1[1] + largura); j++) {
         if(grade[obstaculo1[0]][j] != grade[posicaoCarregamento[0]][posicaoCarregamento[1]]) {
-          grade[obstaculo1[0]][j] = 1;
+          grade[obstaculo1[0]][j] = '1';
         }
       }
     } else {
       for(int j = obstaculo1[1]; j > obstaculo1[1] - largura; j--) {
        if(grade[obstaculo1[0]][j] != grade[posicaoCarregamento[0]][posicaoCarregamento[1]]) {
-          grade[obstaculo1[0]][j] = 1;
+          grade[obstaculo1[0]][j] = '1';
         } 
       } 
     }
@@ -154,13 +160,13 @@ void Ambiente::addObstaculo (int obstaculo1[2], int obstaculo2[2]) {
       if(obstaculo1[0] < obstaculo2[0]) {
       for(int i = obstaculo1[0]; i < (obstaculo1[0] + altura); i++) {
         if(grade[i][obstaculo1[1]] != grade[posicaoCarregamento[0]][posicaoCarregamento[1]]) {
-          grade[i][obstaculo1[1]] = 1;
+          grade[i][obstaculo1[1]] = '1';
         } 
       }
     } else {
       for(int i = obstaculo1[0]; i > obstaculo1[0] - altura; i--) {
         if(grade[i][obstaculo1[1]] != grade[posicaoCarregamento[0]][posicaoCarregamento[1]]) {
-          grade[i][obstaculo1[1]] = 1;
+          grade[i][obstaculo1[1]] = '1';
         }
       }    
     }

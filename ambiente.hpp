@@ -9,7 +9,7 @@ using namespace std;
 
 class Ambiente {
   int * dimensoes;
-  int ** grade;
+  char ** grade;
   int * posicaoCarregamento;
 public:
   Ambiente(string config);
@@ -23,6 +23,12 @@ public:
     }
     cout << endl;
   }
+  };
+  char ** getGrade() {
+    return grade;
+  };
+  int * getPosicaoCarregamento() {
+    return posicaoCarregamento;
   };
 };
 

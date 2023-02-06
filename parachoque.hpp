@@ -9,7 +9,7 @@ using namespace std;
 
 class Parachoque {
     public:
-        void calcularColisoes(Ambiente amb);
+        void calcularColisoes(Ambiente amb, Robot &robot);
 };
 
 #endif 

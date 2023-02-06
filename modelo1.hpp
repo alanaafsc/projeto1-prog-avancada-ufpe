@@ -12,8 +12,7 @@ using namespace std;
 class Modelo1: public Robot {
     Parachoque *parachoque;
     public:
-        Modelo1(string robot, Ambiente amb):Robot(robot, amb) {
-            parachoque = new Parachoque();
+        Modelo1(string robot, Ambiente &amb):Robot(robot, amb) {
         };
         void limpar();
 };

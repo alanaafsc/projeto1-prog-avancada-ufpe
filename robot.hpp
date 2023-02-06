@@ -15,8 +15,9 @@ protected:
     int * posicaoGrade;
     Bateria * bateria;
 public:
-    Robot(string, Ambiente);
+    Robot(string robot, Ambiente &amb);
     void stopRobot();
+    int * getPosicaoGrade();
 };
 
 #endif
