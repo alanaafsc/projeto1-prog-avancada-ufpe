@@ -84,7 +84,7 @@ void Ambiente::addObstaculo (int obstaculo1[2], int obstaculo2[2]) {
   //Calculo da altura e largura do retângulo
   int altura = abs(obstaculo1[0] - obstaculo2[0]) + 1;
   int largura = abs(obstaculo1[1] - obstaculo2[1]) + 1;
-  cout << altura << " " << largura << endl;
+  
   //Começando pelo obstaculo1:
   if(altura != 0 && largura != 0) {
     //Caso tenha largura e altura:

@@ -10,6 +10,6 @@ class Laser {
 };
 
 void Laser::calcularColisoes(Ambiente amb) {
-//O laser detecta a presen ca de um obstaculo para qualquer
+//O laser detecta a presenca de um obstaculo para qualquer
 //célula adjacente
 };
