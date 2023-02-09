@@ -30,16 +30,23 @@ Robot::Robot (string robot, Ambiente &amb) {
         }
         fileRobot.close();
     }
-    amb.getGrade()[posicaoGrade[0]][posicaoGrade[1]] = 'R';
+
+    if(amb.getGrade()[posicaoGrade[0]][posicaoGrade[1]] != 'E') {
+        amb.getGrade()[posicaoGrade[0]][posicaoGrade[1]] = 'R';
+    }
 };
 
 //Metodo para parar o robô quando a bateria descarregar
 void Robot::stopRobot() {
 
-}
+};
 
 int * Robot::getPosicaoGrade() {
     return posicaoGrade;
+};
+
+Bateria* Robot::getBateria() {
+    return bateria;
 }
 /*
 int main () {

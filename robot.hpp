@@ -18,6 +18,7 @@ public:
     Robot(string robot, Ambiente &amb);
     void stopRobot();
     int * getPosicaoGrade();
+    Bateria* getBateria();
 };
 
 #endif
