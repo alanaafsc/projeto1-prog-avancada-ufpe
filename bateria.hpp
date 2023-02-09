@@ -7,6 +7,7 @@ class Bateria {
         Bateria(int nivelInicial);
         void descarregar();
         void carregar();
+        int getNivel();
 };
 
 #endif

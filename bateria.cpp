@@ -10,4 +10,8 @@ void Bateria::descarregar() {
 //Quando chegar na estação de carregamento
 void Bateria::carregar() {
     nivel = 10;
-}
+};
+
+int Bateria::getNivel(){
+    return nivel;
+};
