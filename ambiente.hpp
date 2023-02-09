@@ -30,6 +30,9 @@ public:
   int * getPosicaoCarregamento() {
     return posicaoCarregamento;
   };
+  int * getDimensoes() {
+    return dimensoes;
+  };
 };
 
 #endif

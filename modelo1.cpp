@@ -172,13 +172,52 @@ void Modelo1::limpar (Ambiente &amb) {
                 break;
             } 
 
-            //não há mais células a serem limpas:
+            int target[2];
+            //4 direcoes que o robô pode tomar esta com celula limpa:
             if(arr.size() == 4) {
-                if(find(arr.begin(), arr.end(), arr[0]) != arr.end() && find(arr.begin(), arr.end(), arr[1]) != arr.end() && find(arr.begin(), arr.end(), arr[2]) != arr.end()
-                && find(arr.begin(), arr.end(), arr[3]) != arr.end()) {
-                    escolherDirecao = false;
-                    break;
+                for(int i = 0; i < amb.getDimensoes()[0]; i++) {
+                    for(int j = 0; j < amb.getDimensoes()[1]; j++) {
+                        if(amb.getGrade()[i][j] == '0') {
+                            target[0] = i;
+                            target[1] = j;
+                            if(i > posicaoRobo_x) {
+                                if(posicaoRobo_x == 7) {
+                                    celulaEscolhida[0] = 0;
+                                } else {
+                                    celulaEscolhida[0] = posicaoRobo_x + 1;  
+                                }
+                            } else {
+                                if(posicaoRobo_x == 0) {
+                                    celulaEscolhida[0] = 7;
+                                } else {
+                                 celulaEscolhida[0] = posicaoRobo_x - 1;
+                                }
+                            }
+
+                            if(j > posicaoRobo_y) {
+                                if(posicaoRobo_y == 7) {
+                                    celulaEscolhida[1] = 0;
+                                } else {
+                                    celulaEscolhida[1] = posicaoRobo_y + 1;
+                                }
+                            } else {
+                                if(posicaoRobo_y == 0) {
+                                    celulaEscolhida[1] = 7;
+                                } else {
+                                    celulaEscolhida[1] = posicaoRobo_y - 1;
+                                }
+                            }
+                        }
+                        break;
+                    }
                 }
+                escolherDirecao = false;
+                break;            
+                // if(find(arr.begin(), arr.end(), arr[0]) != arr.end() && find(arr.begin(), arr.end(), arr[1]) != arr.end() && find(arr.begin(), arr.end(), arr[2]) != arr.end()
+                // && find(arr.begin(), arr.end(), arr[3]) != arr.end()) {
+                //     escolherDirecao = false;
+                //     break;
+                // }
             }
         }
 
@@ -199,10 +238,13 @@ void Modelo1::limpar (Ambiente &amb) {
         //diminuir 1 unidade do nivel de bateria
         bateria->descarregar();
         cout << "Nível de bateria: " << bateria->getNivel() << endl;
-        sleep(5);
+        sleep(1);
        
         if(bateria->getNivel() == 0) {
             cout << "Bateria do robô esta zerada. Coloque-o novamente na estação de carregamento";
+            break;
+        }
+        if(!escolherDirecao) {
             break;
         }
     }

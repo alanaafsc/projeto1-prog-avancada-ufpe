@@ -27,6 +27,9 @@ public:
   int * getPosicaoCarregamento() {
     return posicaoCarregamento;
   };
+   int * getDimensoes() {
+    return dimensoes;
+  };
 };
 
 Ambiente::Ambiente (string config) {
