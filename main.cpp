@@ -28,13 +28,21 @@ int main () {
     int obstaculoRec2[2] = {3,4};
     int obstaculo1[2] = {4,4};
     int obstaculo2[2] = {5,4};
-
+    //adicionando obstaculos ao ambiente:
     amb.addObstaculo(obstaculoRec1, obstaculoRec2);
     amb.addObstaculo(obstaculo1);
     amb.addObstaculo(obstaculo2);
-  
+    
     amb.printAmbiente();
-
+    modelo1.limpar(amb);
+    string resposta;
+    cout << "Robô foi totalmente carregado? ";
+    cin >> resposta;
+    if(resposta == "sim") {
+        modelo1.limpar(amb);
+        modelo1.getBateria()->carregar();
+    }
+    
     return 0;
 }
 //Feito:
@@ -48,3 +56,6 @@ int main () {
 //Estacao como ponto de partida, escolhe uma direcao e se move em linha reta ate achar obstaculo. Obstaculo detectado por sensor (laser ou parachoque).
     //robo atinge estado critico de bateria (definir isso) e volta pra estacao de carregamento.
     //se descarregar, ele para 
+// novas coisas pra fazer: 08/02
+// mudar nivel de bateria para 10 novamente dentro do txt, pq eh de la q ele chama -> na classe Bateria
+// ver uma logica que, quando chegar no momento onde Robo esteja com 4 celulas adjacentes limpas, procurar mesmo assim se ha celulas sujas (0)
