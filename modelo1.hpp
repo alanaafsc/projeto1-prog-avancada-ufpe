@@ -14,7 +14,7 @@ class Modelo1: public Robot {
     public:
         Modelo1(string robot, Ambiente &amb):Robot(robot, amb) {
         };
-        void limpar();
+        void limpar(Ambiente &amb);
 };
 
 #endif
