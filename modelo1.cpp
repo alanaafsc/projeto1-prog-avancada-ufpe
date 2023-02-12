@@ -1,9 +1,12 @@
 #include "modelo1.hpp"
+#include <iostream>
 #include <unistd.h>
 #include <vector>
+#include <algorithm>
+#include <array>
 
 using namespace std;
-
+/*
 //Metodo para o robô limpar o ambiente e tomar uma nova direcao
 //Pode se mover nas quatro direcoes
 void Modelo1::limpar (Ambiente &amb) {
@@ -111,10 +114,10 @@ void Modelo1::limpar (Ambiente &amb) {
         } else {
             //celula a esquerda do robo
             leftCell[0] = posicaoRobo_x;
-            leftCell[1] = posicaoRobo_y-1;  
+            leftCell[1] = posicaoRobo_y-1;
             //celula a direita do robo
             rightCell[0] = posicaoRobo_x;
-            rightCell[1] = posicaoRobo_y+1; 
+            rightCell[1] = posicaoRobo_y+1;
             //celula acima do robo
             upCell[0] = posicaoRobo_x-1;
             upCell[1] = posicaoRobo_y;
@@ -159,7 +162,7 @@ void Modelo1::limpar (Ambiente &amb) {
                 }
                 celulaEscolhida[0] = downCell[0];
                 celulaEscolhida[1] = downCell[1];
-                celulaEscolhidaVazia = false; 
+                celulaEscolhidaVazia = false;
                 break;
             } else if(direcao == 3 && amb.getGrade()[leftCell[0]][leftCell[1]] != 'L' && amb.getGrade()[leftCell[0]][leftCell[1]] != 'E') {
                 obstaculo = parachoque->calcularColisoes(amb, leftCell);
@@ -167,10 +170,10 @@ void Modelo1::limpar (Ambiente &amb) {
                     continue;
                 }
                 celulaEscolhida[0] = leftCell[0];
-                celulaEscolhida[1] = leftCell[1]; 
+                celulaEscolhida[1] = leftCell[1];
                 celulaEscolhidaVazia = false;
                 break;
-            } 
+            }
 
             int target[2];
             //4 direcoes que o robô pode tomar esta com celula limpa:
@@ -184,7 +187,7 @@ void Modelo1::limpar (Ambiente &amb) {
                                 if(posicaoRobo_x == 7) {
                                     celulaEscolhida[0] = 0;
                                 } else {
-                                    celulaEscolhida[0] = posicaoRobo_x + 1;  
+                                    celulaEscolhida[0] = posicaoRobo_x + 1;
                                 }
                             } else {
                                 if(posicaoRobo_x == 0) {
@@ -212,7 +215,7 @@ void Modelo1::limpar (Ambiente &amb) {
                     }
                 }
                 escolherDirecao = false;
-                break;            
+                break;
                 // if(find(arr.begin(), arr.end(), arr[0]) != arr.end() && find(arr.begin(), arr.end(), arr[1]) != arr.end() && find(arr.begin(), arr.end(), arr[2]) != arr.end()
                 // && find(arr.begin(), arr.end(), arr[3]) != arr.end()) {
                 //     escolherDirecao = false;
@@ -239,7 +242,7 @@ void Modelo1::limpar (Ambiente &amb) {
         bateria->descarregar();
         cout << "Nível de bateria: " << bateria->getNivel() << endl;
         sleep(1);
-       
+
         if(bateria->getNivel() == 0) {
             cout << "Bateria do robô esta zerada. Coloque-o novamente na estação de carregamento";
             break;
@@ -248,5 +251,61 @@ void Modelo1::limpar (Ambiente &amb) {
             break;
         }
     }
-    
+
 };
+*/
+
+
+void Modelo1::limpar(Ambiente &amb) {
+
+    //inializando celulas a serem limpas na grade:
+
+    vector<array<int, 2>> *celulasParaLimpar = new vector<array<int, 2>>();
+    for(int i = 0; i < amb.getDimensoes()[0]; i++) {
+        for(int j = 0; j < amb.getDimensoes()[1]; j++) {
+            if(amb.getGrade()[i][j] == '0') {
+                celulasParaLimpar->push_back({i,j});
+            }
+        }
+    }
+    /*
+    for (const auto &val : *celulasParaLimpar) {
+        cout << "(" << val[0] << "," << val[1] << ")" << endl;
+    } */
+
+    //posicao do robo:
+    int robotPositionX = getPosicaoGrade()[0];
+    int robotPositionY = getPosicaoGrade()[1];
+    
+    while(!celulasParaLimpar->empty()) {
+        // Direções de movimento
+        const int dx[4] = {-1, 0, 1, 0};
+        const int dy[4] = {0, 1, 0, -1};
+
+        for (int i = 0; i < 4; i++) {
+            int x = robotPositionX + dx[i];
+            int y = robotPositionY + dy[i];
+            // bool verifica = (x >= 0 && x < amb.getDimensoes()[0] && y >= 0 && y < amb.getDimensoes()[1] && amb.getGrade()[x][y] == '0');
+            // cout << verifica << endl;
+
+            if (x >= 0 && x < amb.getDimensoes()[0] && y >= 0 && y < amb.getDimensoes()[1] && amb.getGrade()[x][y] ==0) {
+                if(amb.getGrade()[robotPositionX][robotPositionY] != 'E') {
+
+                    amb.getGrade()[robotPositionX][robotPositionY] = 'L';
+                    array<int, 2> target = {robotPositionX, robotPositionY};
+                    auto it = find(celulasParaLimpar->begin(), celulasParaLimpar->end(), target);
+                    if (it != celulasParaLimpar->end()) {
+                        celulasParaLimpar->erase(it);
+                    }
+                } 
+                amb.getGrade()[x][y] = 'R';
+                robotPositionX = x;
+                robotPositionY = y;
+            }
+            sleep(2);
+            amb.printAmbiente();
+            cout << "========================" << endl;
+        }
+       
+    }
+}

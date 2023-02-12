@@ -4,6 +4,10 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <unistd.h>
+#include <algorithm>
+#include <vector>
+#include <array>
 #include "robot.hpp"
 #include "parachoque.hpp"
 #include "ambiente.hpp"

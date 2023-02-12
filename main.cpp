@@ -22,6 +22,9 @@ int main () {
 
     //Declaração do robô:
     Modelo1 modelo1(fileRobot, amb);
+    // posicao atual do robô:
+    int posicaoRobo_x = modelo1.getPosicaoGrade()[0];
+    int posicaoRobo_y = modelo1.getPosicaoGrade()[1];
 
     //definindo obstaculos:
     int obstaculoRec1[2] = {3,0};
@@ -39,7 +42,7 @@ int main () {
     cout << "Robô foi totalmente carregado? ";
     cin >> resposta;
     if(resposta == "sim") {
-        modelo1.limpar(amb);
+    modelo1.limpar(amb);
         modelo1.getBateria()->carregar();
     }
     

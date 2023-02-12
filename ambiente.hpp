@@ -11,6 +11,7 @@ class Ambiente {
   int * dimensoes;
   char ** grade;
   int * posicaoCarregamento;
+  bool ** visited;
 public:
   Ambiente(string config);
   void addObstaculo(int obstaculo[2]);
@@ -33,6 +34,10 @@ public:
   int * getDimensoes() {
     return dimensoes;
   };
+
+  bool ** getVisited() {
+    return visited;
+  }
 };
 
 #endif
