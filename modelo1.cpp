@@ -54,12 +54,14 @@ void Modelo1::limpar(Ambiente &amb) {
 
                     robotPositionX = x;
                     amb.getGrade()[x][y] = 'R';
+                    bateria->descarregar();
                     array<int, 2> target = {x, y};
                     auto it = find(celulasParaLimpar.begin(), celulasParaLimpar.end(), target);
                     if (it != celulasParaLimpar.end()) {
                         celulasParaLimpar.erase(it);
                     }
                     amb.printAmbiente();
+                    cout << "Nível de bateria: "<<bateria->getNivel() << endl;
                     cout << "======================" << endl;
                     sleep(1);
                 } else {
