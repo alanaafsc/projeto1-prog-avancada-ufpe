@@ -38,13 +38,13 @@ int main () {
     
     amb.printAmbiente();
     modelo1.limpar(amb);
-    string resposta;
-    cout << "Robô foi totalmente carregado? ";
-    cin >> resposta;
-    if(resposta == "sim") {
-    modelo1.limpar(amb);
-        modelo1.getBateria()->carregar();
-    }
+    // string resposta;
+    // cout << "Robô foi totalmente carregado? ";
+    // cin >> resposta;
+    // if(resposta == "sim") {
+    // modelo1.limpar(amb);
+    //     modelo1.getBateria()->carregar();
+    // }
     
     return 0;
 }

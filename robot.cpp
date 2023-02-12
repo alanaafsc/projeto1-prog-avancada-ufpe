@@ -38,7 +38,9 @@ Robot::Robot (string robot, Ambiente &amb) {
 
 //Metodo para parar o robô quando a bateria descarregar
 void Robot::stopRobot() {
-
+    // if(nivel == 0) {
+    //     cout << "Robo descarregado, Favor recarregar";
+    // }
 };
 
 int * Robot::getPosicaoGrade() {
