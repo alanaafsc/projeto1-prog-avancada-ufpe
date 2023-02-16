@@ -7,12 +7,12 @@ using namespace std;
 
 class Parachoque {
     public:
-        bool calcularColisoes(Ambiente amb, int posicaoMovimento[]);
+        bool calcularColisoes(Ambiente amb, int x, int y);
 };
 
-bool Parachoque::calcularColisoes(Ambiente amb, int posicaoMovimento[]) {
+bool Parachoque::calcularColisoes(Ambiente amb, int x, int y) {
     //detecta presenca de obstaculos na direcao do movimento
-    if(amb.getGrade()[posicaoMovimento[0]][posicaoMovimento[1]] == '1') {
+    if(amb.getGrade()[x][y] == '1') {
         return true;
     } 
     return false;

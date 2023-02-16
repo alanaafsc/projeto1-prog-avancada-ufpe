@@ -1,6 +1,5 @@
 #ifndef MODELO1_HPP
 #define MODELO1_HPP
-
 #include <iostream>
 #include <fstream>
 #include <string>

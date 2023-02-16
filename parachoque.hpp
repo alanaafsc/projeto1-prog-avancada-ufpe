@@ -9,7 +9,7 @@ using namespace std;
 
 class Parachoque {
     public:
-        bool calcularColisoes(Ambiente amb, int posicaoMovimento[]);
+        bool calcularColisoes(Ambiente amb, int x, int y);
 };
 
 #endif 
