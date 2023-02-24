@@ -53,12 +53,7 @@ void Modelo1::limpar(Ambiente &amb) {
                 targetX = val[0];
                 targetY = val[1];
             }
-            cout << val[0] << val[1] << " ";
         }
-        cout << endl;
-
-        cout << "targets: " << targetX << " " << targetY << endl;
-        cout << "robo " << robotPositionX << " " << robotPositionY<<endl;
 
         //chegar no x da celula a ser limpa
         if (robotPositionX != targetX) {
@@ -74,7 +69,6 @@ void Modelo1::limpar(Ambiente &amb) {
                 && amb.getGrade()[x][y] != 'E') {
                     //célula de estação de carregamento não terá o valor de L (limpo) quando robô sair dela:
                     if(amb.getGrade()[robotPositionX][robotPositionY] != 'E') {
-                        cout << "entrou aqui " << endl;
                         amb.getGrade()[robotPositionX][robotPositionY] = 'L';
                     }  
                     //nova posição em x do robo:
@@ -103,21 +97,9 @@ void Modelo1::limpar(Ambiente &amb) {
                         cin >> resposta;
                         if(resposta == "s") {
                             bateria->carregar();
-                            // if(amb.getGrade()[robotPositionX][robotPositionY] != 'E') {
-                            //                             cout << "entrou aqui 2" << endl;
-
-                            //     amb.getGrade()[robotPositionX][robotPositionY] = 'L';
-                            // } 
-                            // robotPositionX = amb.getPosicaoCarregamento()[0];
-                            // robotPositionY = amb.getPosicaoCarregamento()[1];
-                            continue;
                         } else {
                             cout << "Favor, carregar o robô" << endl;
-                            // if(amb.getGrade()[robotPositionX][robotPositionY] != 'E') {
-                            //                             cout << "entrou aqui 3" << endl;
-
-                            //     amb.getGrade()[robotPositionX][robotPositionY] = 'L';
-                            // } 
+      
                             break;
                         }
                     }
@@ -142,6 +124,8 @@ void Modelo1::limpar(Ambiente &amb) {
                             celulasParaLimpar.erase(it);
                         }  
                         robotPositionY++;
+
+                        //celula visitada:
                         mapaPares[make_pair(robotPositionX, robotPositionY)]++;
                         amb.getGrade()[robotPositionX][robotPositionY] = 'R';
                     } else if (moveTarget == 'S' && robotPositionY > 0 && amb.getGrade()[robotPositionX][robotPositionY-1] != '1' 
@@ -156,6 +140,7 @@ void Modelo1::limpar(Ambiente &amb) {
                             celulasParaLimpar.erase(it);
                         }
                         robotPositionY--;
+                        //celula visitada:
                         mapaPares[make_pair(robotPositionX, robotPositionY)]++;
                         amb.getGrade()[robotPositionX][robotPositionY] = 'R';
                     } else if (moveTarget == 'E' && robotPositionX < amb.getDimensoes()[0]-1 && amb.getGrade()[robotPositionX+1][robotPositionY] != '1'
@@ -170,6 +155,8 @@ void Modelo1::limpar(Ambiente &amb) {
                             celulasParaLimpar.erase(it);
                         }  
                         robotPositionX++;
+
+                        //celula visitada:
                         mapaPares[make_pair(robotPositionX, robotPositionY)]++;
                         amb.getGrade()[robotPositionX][robotPositionY] = 'R';
                     } else if (moveTarget == 'W' && robotPositionX > 0 && amb.getGrade()[robotPositionX-1][robotPositionY] != '1'
@@ -184,6 +171,8 @@ void Modelo1::limpar(Ambiente &amb) {
                             celulasParaLimpar.erase(it);
                         }  
                         robotPositionX--;
+
+                        //celula visitada:
                         mapaPares[make_pair(robotPositionX, robotPositionY)]++;
                         amb.getGrade()[robotPositionX][robotPositionY] = 'R';
                     }
@@ -204,32 +193,8 @@ void Modelo1::limpar(Ambiente &amb) {
                         cin >> resposta;
                         if(resposta == "s") {
                             bateria->carregar();
-                            // if(amb.getGrade()[robotPositionX][robotPositionY] != 'E') {
-                            //                             cout << "entrou aqui 8" << endl;
 
-                            //     amb.getGrade()[robotPositionX][robotPositionY] = 'L';
-                            // }
-                            // //retira célula limpa do vector celulasParaLimpar:
-                            // array<int, 2> target = {robotPositionX, robotPositionY};
-                            // auto it = find(celulasParaLimpar.begin(), celulasParaLimpar.end(), target);
-                            // if (it != celulasParaLimpar.end()) {
-                            //     celulasParaLimpar.erase(it);
-                            // } 
-                            // robotPositionX = amb.getPosicaoCarregamento()[0];
-                            // robotPositionY = amb.getPosicaoCarregamento()[1];
                         } else {
-                            cout << "Favor, carregar o robô" << endl;
-                            // if(amb.getGrade()[robotPositionX][robotPositionY] != 'E') {
-                            //                             cout << "entrou aqui 9" << endl;
-
-                            //     amb.getGrade()[robotPositionX][robotPositionY] = 'L';
-                            // }
-                            // //retira célula limpa do vector celulasParaLimpar:
-                            // array<int, 2> target = {robotPositionX, robotPositionY};
-                            // auto it = find(celulasParaLimpar.begin(), celulasParaLimpar.end(), target);
-                            // if (it != celulasParaLimpar.end()) {
-                            //     celulasParaLimpar.erase(it);
-                            // }  
                             break;
                         }
                     }
@@ -250,8 +215,6 @@ void Modelo1::limpar(Ambiente &amb) {
                 if (x >= 0 && x < amb.getDimensoes()[0] && y >= 0 && y < amb.getDimensoes()[1] && !(parachoque->calcularColisoes(amb, x, y)) 
                 && amb.getGrade()[x][y] != 'E') {
                     if(amb.getGrade()[robotPositionX][robotPositionY] != 'E') {
-                                                cout << "entrou aqui 10" << endl;
-
                         amb.getGrade()[robotPositionX][robotPositionY] = 'L';
                     }  
 
@@ -282,32 +245,8 @@ void Modelo1::limpar(Ambiente &amb) {
                             cin >> resposta;
                             if(resposta == "s") {
                                 bateria->carregar();
-                                // if(amb.getGrade()[robotPositionX][robotPositionY] != 'E') {
-                                //                             cout << "entrou aqui 11" << endl;
-
-                                //     amb.getGrade()[robotPositionX][robotPositionY] = 'L';
-                                // }
-                                // //retira célula limpa do vector celulasParaLimpar:
-                                // array<int, 2> target = {robotPositionX, robotPositionY};
-                                // auto it = find(celulasParaLimpar.begin(), celulasParaLimpar.end(), target);
-                                // if (it != celulasParaLimpar.end()) {
-                                //     celulasParaLimpar.erase(it);
-                                // } 
-                                // robotPositionX = amb.getPosicaoCarregamento()[0];
-                                // robotPositionY = amb.getPosicaoCarregamento()[1];
                             } else {
                                 cout << "Favor, carregar o robô" << endl;
-                                // if(amb.getGrade()[robotPositionX][robotPositionY] != 'E') {
-                                //                             cout << "entrou aqui 12" << endl;
-
-                                //     amb.getGrade()[robotPositionX][robotPositionY] = 'L';
-                                // }
-                                //retira célula limpa do vector celulasParaLimpar:
-                                // array<int, 2> target = {robotPositionX, robotPositionY};
-                                // auto it = find(celulasParaLimpar.begin(), celulasParaLimpar.end(), target);
-                                // if (it != celulasParaLimpar.end()) {
-                                //     celulasParaLimpar.erase(it);
-                                // }  
                                 break;
                             }
                         }
@@ -395,33 +334,8 @@ void Modelo1::limpar(Ambiente &amb) {
                         cin >> resposta;
                         if(resposta == "s") {
                             bateria->carregar();
-                            // if(amb.getGrade()[robotPositionX][robotPositionY] != 'E') {
-                            //                             cout << "entrou aqui 8" << endl;
-
-                            //     amb.getGrade()[robotPositionX][robotPositionY] = 'L';
-                            // } 
-                            // //retira célula limpa do vector celulasParaLimpar:
-                            // array<int, 2> target = {robotPositionX, robotPositionY};
-                            // auto it = find(celulasParaLimpar.begin(), celulasParaLimpar.end(), target);
-                            // if (it != celulasParaLimpar.end()) {
-                            //     celulasParaLimpar.erase(it);
-                            // } 
-
-                            // robotPositionX = amb.getPosicaoCarregamento()[0];
-                            // robotPositionY = amb.getPosicaoCarregamento()[1];
                         } else {
                             cout << "Favor, carregar o robô" << endl;
-                            // if(amb.getGrade()[robotPositionX][robotPositionY] != 'E') {
-                            //                             cout << "entrou aqui 9" << endl;
-
-                            //     amb.getGrade()[robotPositionX][robotPositionY] = 'L';
-                            // }
-                            // //retira célula limpa do vector celulasParaLimpar:
-                            // array<int, 2> target = {robotPositionX, robotPositionY};
-                            // auto it = find(celulasParaLimpar.begin(), celulasParaLimpar.end(), target);
-                            // if (it != celulasParaLimpar.end()) {
-                            //     celulasParaLimpar.erase(it);
-                            // }  
                             break;
                         }
                     }
