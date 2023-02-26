@@ -11,11 +11,13 @@
 using namespace std;
 
 class Modelo2: public Robot {
-char orientacao;
-Laser *laser;
+    char orientacao;
+    Laser *laser;
 public:
-Modelo2(string robot, Ambiente amb);
-void limpar();
+    Modelo2(string robot, Ambiente amb):Robot(robot, amb) {
+        laser = new Laser();
+    };
+    void limpar(Ambiente &amb);
 };
 
 #endif

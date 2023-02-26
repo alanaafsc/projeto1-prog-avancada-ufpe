@@ -186,39 +186,3 @@ void Ambiente::addObstaculo (int obstaculo1[2], int obstaculo2[2]) {
     }
   }
 };
-
-/*
-int main() {
-  //Arquivo de configuração do ambiente
-  string file = "config.txt";
-
-  //Declaração do ambiente:
-  Ambiente amb(file);
-
-  //Adição de obstáculo:
-  // int obstaculo1[2] = {3,0};
-  // int obstaculo2[2] = {3,1};
-  // int obstaculo3[2] = {3,2};
-  // int obstaculo4[2] = {3,3};
-  // int obstaculo5[2] = {3,4};
-  // int obstaculo6[2] = {4,4};
-  // int obstaculo7[2] = {5,4};
-  // amb.addObstaculo(obstaculo1);
-  // amb.addObstaculo(obstaculo2);
-  // amb.addObstaculo(obstaculo3);
-  // amb.addObstaculo(obstaculo4);
-  // amb.addObstaculo(obstaculo5);
-  // amb.addObstaculo(obstaculo6);
-  // amb.addObstaculo(obstaculo7);
-
-
-  //testando obstaculo com retangulo
-  // int obstaculoRec1[2] = {4,7};
-  // int obstaculoRec2[2] = {4,4};
-  // amb.addObstaculo(obstaculoRec1, obstaculoRec2);
-  
-  amb.printAmbiente();
-
-  return 0;
-}
-*/

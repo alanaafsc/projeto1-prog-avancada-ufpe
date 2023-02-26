@@ -10,7 +10,7 @@ using namespace std;
 
 class Laser {
     public:
-        void calcularColisoes(Ambiente amb);
+        bool calcularColisoes(Ambiente amb, int robotX, int robotY);
 };
 
 #endif //LASER_H

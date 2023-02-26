@@ -112,7 +112,7 @@ void Modelo1::limpar(Ambiente &amb) {
                     char moveTarget = moves[number];
 
                     // executa o movimento escolhido
-                    if (moveTarget == 'N' && robotPositionY < amb.getDimensoes()[1]-1 && amb.getGrade()[robotPositionX][robotPositionY+1] != '1'
+                    if (moveTarget == 'N' && robotPositionY < amb.getDimensoes()[1]-1 && !(parachoque->calcularColisoes(amb, robotPositionX, robotPositionY+1))
                     && amb.getGrade()[robotPositionX][robotPositionY+1] != 'E' && mapaPares[make_pair(robotPositionX, robotPositionY+1)] < 3) {
                         if(amb.getGrade()[robotPositionX][robotPositionY] != 'E') {
                             amb.getGrade()[robotPositionX][robotPositionY] = 'L';
@@ -128,7 +128,7 @@ void Modelo1::limpar(Ambiente &amb) {
                         //celula visitada:
                         mapaPares[make_pair(robotPositionX, robotPositionY)]++;
                         amb.getGrade()[robotPositionX][robotPositionY] = 'R';
-                    } else if (moveTarget == 'S' && robotPositionY > 0 && amb.getGrade()[robotPositionX][robotPositionY-1] != '1' 
+                    } else if (moveTarget == 'S' && robotPositionY > 0 && !(parachoque->calcularColisoes(amb, robotPositionX, robotPositionY-1)) 
                     && amb.getGrade()[robotPositionX][robotPositionY-1] != 'E' && mapaPares[make_pair(robotPositionX, robotPositionY-1)] < 3) {
                         if(amb.getGrade()[robotPositionX][robotPositionY] != 'E') {
                             amb.getGrade()[robotPositionX][robotPositionY] = 'L';
@@ -143,7 +143,7 @@ void Modelo1::limpar(Ambiente &amb) {
                         //celula visitada:
                         mapaPares[make_pair(robotPositionX, robotPositionY)]++;
                         amb.getGrade()[robotPositionX][robotPositionY] = 'R';
-                    } else if (moveTarget == 'E' && robotPositionX < amb.getDimensoes()[0]-1 && amb.getGrade()[robotPositionX+1][robotPositionY] != '1'
+                    } else if (moveTarget == 'E' && robotPositionX < amb.getDimensoes()[0]-1 && !(parachoque->calcularColisoes(amb, robotPositionX+1, robotPositionY))
                     && amb.getGrade()[robotPositionX+1][robotPositionY] != 'E' && mapaPares[make_pair(robotPositionX+1, robotPositionY)] < 3) {
                         if(amb.getGrade()[robotPositionX][robotPositionY] != 'E') {
                             amb.getGrade()[robotPositionX][robotPositionY] = 'L';
@@ -159,7 +159,7 @@ void Modelo1::limpar(Ambiente &amb) {
                         //celula visitada:
                         mapaPares[make_pair(robotPositionX, robotPositionY)]++;
                         amb.getGrade()[robotPositionX][robotPositionY] = 'R';
-                    } else if (moveTarget == 'W' && robotPositionX > 0 && amb.getGrade()[robotPositionX-1][robotPositionY] != '1'
+                    } else if (moveTarget == 'W' && robotPositionX > 0 && !(parachoque->calcularColisoes(amb, robotPositionX-1, robotPositionY+1))
                     && amb.getGrade()[robotPositionX-1][robotPositionY] != 'E' && mapaPares[make_pair(robotPositionX-1, robotPositionY)] < 3) {
                         if(amb.getGrade()[robotPositionX][robotPositionY] != 'E') {
                             amb.getGrade()[robotPositionX][robotPositionY] = 'L';
@@ -260,7 +260,7 @@ void Modelo1::limpar(Ambiente &amb) {
                     char moveTarget = moves[number];
 
                     // executa o movimento escolhido
-                    if (moveTarget == 'N' && robotPositionY < amb.getDimensoes()[1]-1 && amb.getGrade()[robotPositionX][robotPositionY+1] != '1'
+                    if (moveTarget == 'N' && robotPositionY < amb.getDimensoes()[1]-1 && !(parachoque->calcularColisoes(amb, robotPositionX, robotPositionY+1))
                     && amb.getGrade()[robotPositionX][robotPositionY+1] != 'E' && mapaPares[make_pair(robotPositionX, robotPositionY+1)] < 3) {
                         if(amb.getGrade()[robotPositionX][robotPositionY] != 'E') {
                             amb.getGrade()[robotPositionX][robotPositionY] = 'L';
@@ -274,7 +274,7 @@ void Modelo1::limpar(Ambiente &amb) {
                         robotPositionY++;
                         mapaPares[make_pair(robotPositionX, robotPositionY)]++;
                         amb.getGrade()[robotPositionX][robotPositionY] = 'R';
-                    } else if (moveTarget == 'S' && robotPositionY > 0 && amb.getGrade()[robotPositionX][robotPositionY-1] != '1' 
+                    } else if (moveTarget == 'S' && robotPositionY > 0 && !(parachoque->calcularColisoes(amb, robotPositionX, robotPositionY-1))
                     && amb.getGrade()[robotPositionX][robotPositionY-1] != 'E' && mapaPares[make_pair(robotPositionX, robotPositionY-1)] < 3) {
                         if(amb.getGrade()[robotPositionX][robotPositionY] != 'E') {
                             amb.getGrade()[robotPositionX][robotPositionY] = 'L';
@@ -288,7 +288,7 @@ void Modelo1::limpar(Ambiente &amb) {
                         robotPositionY--;
                         mapaPares[make_pair(robotPositionX, robotPositionY)]++;
                         amb.getGrade()[robotPositionX][robotPositionY] = 'R';
-                    } else if (moveTarget == 'E' && robotPositionX < amb.getDimensoes()[0]-1 && amb.getGrade()[robotPositionX+1][robotPositionY] != '1'
+                    } else if (moveTarget == 'E' && robotPositionX < amb.getDimensoes()[0]-1 && !(parachoque->calcularColisoes(amb, robotPositionX+1, robotPositionY))
                     && amb.getGrade()[robotPositionX+1][robotPositionY] != 'E' && mapaPares[make_pair(robotPositionX+1, robotPositionY)] < 3) {
                         if(amb.getGrade()[robotPositionX][robotPositionY] != 'E') {
                             amb.getGrade()[robotPositionX][robotPositionY] = 'L';
@@ -302,7 +302,7 @@ void Modelo1::limpar(Ambiente &amb) {
                         robotPositionX++;
                         mapaPares[make_pair(robotPositionX, robotPositionY)]++;
                         amb.getGrade()[robotPositionX][robotPositionY] = 'R';
-                    } else if (moveTarget == 'W' && robotPositionX > 0 && amb.getGrade()[robotPositionX-1][robotPositionY] != '1'
+                    } else if (moveTarget == 'W' && robotPositionX > 0 && !(parachoque->calcularColisoes(amb, robotPositionX-1, robotPositionY))
                     && amb.getGrade()[robotPositionX-1][robotPositionY] != 'E' && mapaPares[make_pair(robotPositionX-1, robotPositionY)] < 3) {
                         if(amb.getGrade()[robotPositionX][robotPositionY] != 'E') {
                             amb.getGrade()[robotPositionX][robotPositionY] = 'L';

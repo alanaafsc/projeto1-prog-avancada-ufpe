@@ -20,9 +20,9 @@ int main () {
     //Arquivo de configuração do robô
     string fileRobot = "robot.txt";
 
-    //Declaração do robô:
+    // //Declaração do robô:
     Modelo1 modelo1(fileRobot, amb);
-    // posicao atual do robô:
+    // // posicao atual do robô:
     int posicaoRobo_x = modelo1.getPosicaoGrade()[0];
     int posicaoRobo_y = modelo1.getPosicaoGrade()[1];
 
@@ -38,13 +38,16 @@ int main () {
     
     amb.printAmbiente();
     modelo1.limpar(amb);
-    // string resposta;
-    // cout << "Robô foi totalmente carregado? ";
-    // cin >> resposta;
-    // if(resposta == "sim") {
-    // modelo1.limpar(amb);
-    //     modelo1.getBateria()->carregar();
-    // }
+    
+    // //Iniciar modelo2:
+    // Modelo2 modelo2(fileRobot, amb);
+    // // posicao atual do robô:
+    // int posicaoRobo_x = modelo2.getPosicaoGrade()[0];
+    // int posicaoRobo_y = modelo2.getPosicaoGrade()[1]; 
+
+    // //limpar ambiente com modelo2:
+    // modelo2.limpar(amb);
+
     
     return 0;
 }
