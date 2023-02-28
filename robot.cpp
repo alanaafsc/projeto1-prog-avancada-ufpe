@@ -54,14 +54,3 @@ int * Robot::getPosicaoGrade() {
 Bateria* Robot::getBateria() {
     return bateria;
 }
-/*
-int main () {
-    //Arquivo de configuração do robô
-    string file = "robot.txt";
-
-    //Declaração do robô:
-    Robot robot(file);
-
-    return 0;
-};
-*/

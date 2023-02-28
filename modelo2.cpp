@@ -40,50 +40,63 @@ void Modelo2::limpar (Ambiente &amb) {
     int dir = rand() % 8;
 
     // Loop principal para movimentar o robô
-while (true) {
-    // Verifica se há obstáculo na direção atual do robô
-    int new_x = robotPositionX + dx[dir];
-    int new_y = robotPositionY + dy[dir];
-
-    bool visited = false;
     while (true) {
-        if (new_x < 0 || new_x >= amb.getDimensoes()[0] || new_y < 0 || new_y >= amb.getDimensoes()[1] || 
-            amb.getGrade()[new_x][new_y] == '1' || amb.getGrade()[new_x][new_y] == 'E' || 
-            mapaPares[make_pair(new_x, new_y)] > 2) {
-            dir = rand() % 8;
-            new_x = robotPositionX + dx[dir];
-            new_y = robotPositionY + dy[dir];
-        } else {
-            visited = true;
+        // Verifica se há obstáculo na direção atual do robô
+        dir = rand() % 8;
+        int new_x = robotPositionX + dx[dir];
+        int new_y = robotPositionY + dy[dir];
+        cout << new_x << " " << new_y << endl;
+        bool visited = false;
+        while (true) {
+            if (new_x < 0 || new_x >= amb.getDimensoes()[0] || new_y < 0 || new_y >= amb.getDimensoes()[1] || 
+                laser->calcularColisoes(amb, new_x, new_y) || amb.getGrade()[new_x][new_y] == 'E' || 
+                mapaPares[make_pair(new_x, new_y)] > 4) {
+                dir = rand() % 8;
+                new_x = robotPositionX + dx[dir];
+                new_y = robotPositionY + dy[dir];
+            } else {
+                visited = true;
+                break;
+            }
+        }
+
+        if (!visited) {
+            // Todas as direções foram visitadas, não há mais células para limpar
             break;
         }
+
+        // Move o robô na direção atual
+        if (amb.getGrade()[robotPositionX][robotPositionY] != 'E') { 
+            amb.getGrade()[robotPositionX][robotPositionY] = 'L';
+        }    
+
+        robotPositionX = new_x;
+        robotPositionY = new_y;
+
+        amb.getGrade()[robotPositionX][robotPositionY] = 'R';
+
+        //adicionar em celula visitada:
+        mapaPares[make_pair(robotPositionX, robotPositionY)]++;
+
+        //descarregar robo a cada acao:
+        bateria->descarregar();
+
+        //printar ambiente e o nível atual de bateria:
+        amb.printAmbiente();
+        cout << "Nível de bateria: "<<bateria->getNivel() << endl;
+        cout << "======================" << endl;
+        sleep(1);
+
+        if(stopRobot()) {
+            string resposta;
+            cout << "Bateria recarregada? Responda com 's' ou 'n' ";
+            cin >> resposta;
+            if(resposta == "s") {
+                bateria->carregar();
+            } else {
+                cout << "Favor, carregar o robô" << endl;
+                break;
+            }
+        }
     }
-
-    if (!visited) {
-        // Todas as direções foram visitadas, não há mais células para limpar
-        break;
-    }
-
-    // Move o robô na direção atual
-    if (amb.getGrade()[robotPositionX][robotPositionY] != 'E') { 
-        amb.getGrade()[robotPositionX][robotPositionY] = 'L';
-    }    
-
-    robotPositionX = new_x;
-    robotPositionY = new_y;
-
-    amb.getGrade()[robotPositionX][robotPositionY] = 'R';
-
-    //adicionar em celula visitada:
-    mapaPares[make_pair(robotPositionX, robotPositionY)]++;
-
-    //descarregar robo a cada acao:
-    bateria->descarregar();
-
-    //printar ambiente e o nível atual de bateria:
-    amb.printAmbiente();
-    cout << "Nível de bateria: "<<bateria->getNivel() << endl;
-    cout << "======================" << endl;
-    sleep(1);
-}
  };

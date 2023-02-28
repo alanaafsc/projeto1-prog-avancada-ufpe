@@ -25,9 +25,6 @@ void Modelo1::limpar(Ambiente &amb) {
         }
     }
 
-    //quantidade de vezes que celulas foram visitadas:
-    int tamanho = amb.getDimensoes()[0] * amb.getDimensoes()[1];
-    vector<pair<int, int> > listaPares; // declaração do vetor com valores (int, int), que são as posições da grade
     // mapeamento dos pares (x, y) para a quantidade de visitas
     map<pair<int, int>, int> mapaPares;
 
@@ -38,9 +35,6 @@ void Modelo1::limpar(Ambiente &amb) {
     //enquanto vector com células a serem limpas estiver com algum elemento, significa que 
     //o robô precisa continuar limpando o ambiente
     while(!celulasParaLimpar.empty() && !stopRobot()) {
-        // Direções de movimento
-        const int dx[4] = {-1, 0, 1, 0};
-        const int dy[4] = {0, 1, 0, -1};
 
         //lógica para obter qual celula do vector de celulas a serem limpas tem a menor distancia da posicao do robô
         //com isso, ele irá seguir um caminho para chegar na célula mais próxima a ser limpa (target)
